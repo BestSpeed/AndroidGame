@@ -1,7 +1,7 @@
 // فروشگاه، پروفایل، لیدربرد، دوستان، تنظیمات
 import { t, fmt, getLang, setLang } from '../i18n.js';
 import { el, avatarEl, topbar, toast, bottomNav, modal } from '../ui.js';
-import { api } from '../api.js';
+import { api, isOffline, setForceOffline } from '../api.js';
 import { store } from '../store.js';
 import { sfx, setVolumes, getVolumes, startMusic } from '../audio.js';
 import { ev } from '../analytics.js';
@@ -203,6 +203,11 @@ export function friendsScreen(root) {
     list,
     bottomNav('home'),
   ));
+  if (isOffline()) {
+    list.innerHTML = '';
+    list.appendChild(el('div', { class: 'card center muted' }, '📴 ', t('friends.offline')));
+    return;
+  }
   api.recent().then(({ players }) => {
     list.innerHTML = '';
     if (!players.length) { list.innerHTML = `<div class="muted center">${t('friends.empty')}</div>`; return; }
@@ -244,10 +249,25 @@ export function settingsScreen(root) {
     el('option', { value: 'en', selected: getLang() === 'en' || undefined }, 'English'),
   );
 
+  const offlineToggle = el('input', { type: 'checkbox', ...(isOffline() ? { checked: true } : {}) });
+  offlineToggle.style.width = '22px'; offlineToggle.style.height = '22px'; offlineToggle.style.accentColor = 'var(--accent)';
+  offlineToggle.addEventListener('change', () => {
+    setForceOffline(offlineToggle.checked);
+    location.reload();
+  });
+
   root.appendChild(el('div', { class: 'screen' },
     topbar(store.profile),
     el('div', { class: 'h1' }, '⚙️ ', t('settings.title')),
     el('div', { class: 'card' },
+      el('div', { class: 'spread' },
+        el('div', {},
+          el('div', { style: 'font-weight:800' }, '📴 ', t('settings.offlineMode')),
+          el('div', { class: 'muted', style: 'font-size:12px' }, t('settings.offlineHint')),
+        ),
+        offlineToggle,
+      ),
+      el('div', { class: 'divider' }),
       el('label', { class: 'lbl' }, t('settings.lang')), langSel,
       el('label', { class: 'lbl' }, '🎵 ' + t('settings.music')), musicRange,
       el('label', { class: 'lbl' }, '🔊 ' + t('settings.sfx')), sfxRange,

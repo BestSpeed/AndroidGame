@@ -1,7 +1,7 @@
 // صفحات اصلی: ورود، خانه، بازی
 import { t, fmt, getLang, setLang } from '../i18n.js';
 import { el, avatarEl, topbar, toast, bottomNav } from '../ui.js';
-import { api, setToken } from '../api.js';
+import { api, setToken, isOffline } from '../api.js';
 import { store } from '../store.js';
 import { sfx } from '../audio.js';
 import { ev } from '../analytics.js';
@@ -38,6 +38,7 @@ export function loginScreen(root, onLoggedIn) {
     el('div', { style: 'font-size:90px' }, '🕹️'),
     el('div', { style: 'font-size:42px;font-weight:900;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent' }, t('app.name')),
     el('div', { class: 'muted' }, t('app.tag')),
+    isOffline() ? el('div', { class: 'chip', style: 'border-color:var(--accent2)' }, t('offline.badge')) : null,
     el('div', { class: 'mt2', style: 'width:100%;display:flex;justify-content:center' }, btn),
     el('div', { class: 'muted', style: 'margin-top:8px' }, t('login.guest') + ' · ' + '8P · 3 ROUNDS'),
   ));
@@ -99,9 +100,12 @@ export function playScreen(root) {
       el('div', { style: 'font-weight:900;font-size:19px' }, t('play.quick')),
       el('div', { class: 'muted' }, t('play.quickDesc')),
     ),
-    el('div', { class: 'card', style: 'cursor:pointer', onclick: () => location.hash = '#room' },
+    el('div', { class: 'card', style: isOffline() ? 'opacity:.55' : 'cursor:pointer', onclick: () => {
+      if (isOffline()) return toast(t('offline.roomUnavailable'), 'err');
+      location.hash = '#room';
+    } },
       el('div', { style: 'font-size:34px' }, '🚪'),
-      el('div', { style: 'font-weight:900;font-size:19px' }, t('play.room')),
+      el('div', { style: 'font-weight:900;font-size:19px' }, t('play.room'), isOffline() ? ' 📴' : ''),
       el('div', { class: 'muted' }, t('play.roomDesc')),
     ),
     el('div', { class: 'card', style: 'cursor:pointer', onclick: () => location.hash = '#daily' },

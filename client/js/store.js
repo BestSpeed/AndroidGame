@@ -1,5 +1,5 @@
 // وضعیت سراسری کلاینت
-import { api, setToken } from './api.js';
+import { api, setToken, initTransport } from './api.js';
 import { setLang } from './i18n.js';
 
 export const store = {
@@ -10,6 +10,7 @@ export const store = {
 };
 
 export async function boot() {
+  await initTransport(); // تشخیص آنلاین/آفلاین قبل از هر فراخوانی
   const cfgRes = await api.config();
   store.config = cfgRes.config;
   store.env = cfgRes.env;

@@ -1,0 +1,6 @@
+{
+  "name": "bazikhuneh-client",
+  "private": true,
+  "type": "module",
+  "_note": "فقط برای اجرای تست‌های موتور آفلاین با Node — مرورگر این فایل را نمی‌خواند."
+}

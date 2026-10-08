@@ -2,7 +2,7 @@
 import { t, fmt } from '../i18n.js';
 import { el, avatarEl, toast, emoteBar, emoteBubble, showInterstitial, showRewardedAd, copyText } from '../ui.js';
 import { send, on } from '../socket.js';
-import { api } from '../api.js';
+import { api, isOffline } from '../api.js';
 import { store } from '../store.js';
 import { sfx } from '../audio.js';
 import { ev } from '../analytics.js';
@@ -34,7 +34,7 @@ export function bindGlobalMatchHandlers() {
     const p = flow.players.find((x) => x.id === m.from);
     emoteBubble(String(m.emote), p?.username || '');
   });
-  on('error', (m) => toast(m.msg || t('err.generic'), 'err'));
+  on('error', (m) => toast(m.msg === 'room' ? t('offline.roomUnavailable') : (m.msg || t('err.generic')), 'err'));
   on('*', (type, msg) => {
     // رویدادهای گیم‌پلی به ویو فعال می‌رسند
     if (view && (type.startsWith('card.') || type.startsWith('rule.') || type.startsWith('s.') || type.startsWith('r.') || type === 'walls' || type === 'sudden')) {
@@ -279,6 +279,7 @@ function onResume(m) {
 }
 
 async function inviteFriends() {
+  if (isOffline()) return toast(t('offline.roomUnavailable'), 'err');
   ev('friend_invite', { channel: 'share_code' });
   send('room.create', { fillBots: true });
   location.hash = '#room';

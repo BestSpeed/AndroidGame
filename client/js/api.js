@@ -1,12 +1,35 @@
-// کلاینت API — مدیریت خطای مهربان (بند ۴۷): هیچ خطای خامی به کاربر نشان داده نمی‌شود.
+// کلاینت API — دو مسیر: آنلاین (سرور) و آفلاین (موتور محلی). انتخاب خودکار در راه‌اندازی.
+// مدیریت خطای مهربان (بند ۴۷): هیچ خطای خامی به کاربر نشان داده نمی‌شود.
 import { t } from './i18n.js';
+import { ApiError } from './errors.js';
+import { offlineApi } from './offline/api.js';
+
+export { ApiError };
 
 let token = localStorage.getItem('bk_token') || null;
 export function setToken(tk) { token = tk; if (tk) localStorage.setItem('bk_token', tk); else localStorage.removeItem('bk_token'); }
 export function getToken() { return token; }
 
-export class ApiError extends Error {
-  constructor(code, msg) { super(msg || code); this.code = code; }
+// ── انتخاب مسیر اتصال ──
+let offline = localStorage.getItem('bk_force_offline') === '1';
+export function isOffline() { return offline; }
+export function setForceOffline(v) {
+  if (v) localStorage.setItem('bk_force_offline', '1');
+  else localStorage.removeItem('bk_force_offline');
+}
+
+export async function initTransport() {
+  if (localStorage.getItem('bk_force_offline') === '1') { offline = true; return; }
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const res = await fetch('/api/config/client', { signal: ctrl.signal });
+    clearTimeout(timer);
+    offline = !res.ok;
+  } catch {
+    offline = true; // سرور در دسترس نیست → بازی آفلاین
+  }
+  if (offline) setToken(token || 'offline');
 }
 
 async function request(method, path, body) {
@@ -30,7 +53,7 @@ async function request(method, path, body) {
   return data;
 }
 
-export const api = {
+const onlineApi = {
   guestLogin: () => request('POST', '/auth/guest'),
   me: () => request('GET', '/me'),
   updateMe: (body) => request('PATCH', '/me', body),
@@ -50,3 +73,9 @@ export const api = {
   dailyStart: () => request('POST', '/daily/start'),
   events: (events) => request('POST', '/events', { events }),
 };
+
+// نمای یکپارچه: هر فراخوانی در لحظه به مسیر فعال وصل می‌شود
+export const api = {};
+for (const key of Object.keys(onlineApi)) {
+  api[key] = (...args) => (offline ? offlineApi[key](...args) : onlineApi[key](...args));
+}

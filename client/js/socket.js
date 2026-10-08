@@ -1,7 +1,8 @@
-// سوکت بازی — اتصال مجدد با پس‌رفت توانی (بند ۳۲/۳۳): بدون فریز، با پیام فارسی.
-import { getToken } from './api.js';
+// سوکت بازی — دو مسیر: آنلاین (وب‌سوکت با اتصال مجدد) و آفلاین (موتور محلی با همان پروتکل).
+import { getToken, isOffline } from './api.js';
 import { t } from './i18n.js';
 import { ev } from './analytics.js';
+import { localSocket } from './offline/socket.js';
 
 const listeners = new Map(); // type -> Set<fn>
 let ws = null, closedByUs = false, attempts = 0, reconnectTimer = null;
@@ -9,6 +10,7 @@ let overlayEl = null;
 const cfg = { baseDelayMs: 1000, maxDelayMs: 15000, factor: 2 };
 
 export function on(type, fn) {
+  if (isOffline()) return localSocket.on(type, fn);
   if (!listeners.has(type)) listeners.set(type, new Set());
   listeners.get(type).add(fn);
   return () => listeners.get(type)?.delete(fn);
@@ -20,6 +22,7 @@ function emit(type, data) {
 }
 
 export function connect() {
+  if (isOffline()) { localSocket.connect(); return; }
   if (ws && (ws.readyState === 0 || ws.readyState === 1)) return;
   closedByUs = false;
   const proto = location.protocol === 'https:' ? 'wss' : 'ws';
@@ -54,6 +57,7 @@ function scheduleReconnect() {
 }
 
 export function disconnect() {
+  if (isOffline()) { localSocket.disconnect(); return; }
   closedByUs = true;
   if (reconnectTimer) { clearTimeout(reconnectTimer); reconnectTimer = null; }
   hideOverlay();
@@ -61,6 +65,7 @@ export function disconnect() {
 }
 
 export function send(type, payload = {}) {
+  if (isOffline()) { localSocket.send(type, payload); return; }
   if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type, ...payload }));
 }
 
