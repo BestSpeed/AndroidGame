@@ -1,0 +1,11 @@
+{
+  "rotation": ["reaction"],
+  "reaction": {
+    "durationSec": 30,
+    "targets": [800, 1100, 1400, 1800],
+    "pickTargetIndexByDay": true,
+    "rewardCoins": 150,
+    "rewardXp": 50,
+    "maxAttempts": 3
+  }
+}

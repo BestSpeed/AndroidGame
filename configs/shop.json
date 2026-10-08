@@ -1,0 +1,15 @@
+{
+  "items": [
+    { "id": "av_gol", "type": "avatar", "rarity": "common", "price": 150, "currency": "coins", "asset": "🌸", "name": { "fa": "آواتار گل", "en": "Flower Avatar" }, "desc": { "fa": "یه گل خوشگل برای پروفایلت", "en": "A lovely flower for your profile" } },
+    { "id": "av_khorus", "type": "avatar", "rarity": "common", "price": 150, "currency": "coins", "asset": "🐓", "name": { "fa": "خروس محل", "en": "Rooster" }, "desc": { "fa": "سحرخیز باش!", "en": "Rise and shine!" } },
+    { "id": "av_mushak", "type": "avatar", "rarity": "rare", "price": 400, "currency": "coins", "asset": "🚀", "name": { "fa": "موشک", "en": "Rocket" }, "desc": { "fa": "برای سرعتی‌ها", "en": "For the fast ones" } },
+    { "id": "av_ghuri", "type": "avatar", "rarity": "rare", "price": 400, "currency": "coins", "asset": "🫖", "name": { "fa": "قوری نوستالژی", "en": "Teapot" }, "desc": { "fa": "چای ذغالی یادت نره", "en": "Never forget the samovar" } },
+    { "id": "av_azhdaha", "type": "avatar", "rarity": "epic", "price": 900, "currency": "coins", "asset": "🐉", "name": { "fa": "اژدها", "en": "Dragon" }, "desc": { "fa": "ابهیتم رو به رخ بکش", "en": "Show your power" } },
+    { "id": "fr_gold", "type": "frame", "rarity": "epic", "price": 1200, "currency": "coins", "asset": "gold", "name": { "fa": "قاب طلایی", "en": "Gold Frame" }, "desc": { "fa": "قاب دور آواتار", "en": "Avatar frame" } },
+    { "id": "fr_neon", "type": "frame", "rarity": "rare", "price": 600, "currency": "coins", "asset": "neon", "name": { "fa": "قاب نئونی", "en": "Neon Frame" }, "desc": { "fa": "شب‌نما", "en": "Glow in the dark" } },
+    { "id": "em_cheeky", "type": "emote", "rarity": "common", "price": 200, "currency": "coins", "asset": "😜", "name": { "fa": "ایول!", "en": "Cheeky" }, "desc": { "fa": "ایموت ویژه", "en": "Special emote" } },
+    { "id": "pack_coins_s", "type": "pack", "rarity": "common", "price": 10, "currency": "gems", "asset": "coins", "amount": 500, "name": { "fa": "بسته ۵۰۰ سکه", "en": "500 Coins" }, "desc": { "fa": "۵۰۰ سکه", "en": "500 coins" } },
+    { "id": "pack_gems_s", "type": "pack", "rarity": "common", "price": 2, "currency": "iap", "asset": "gems", "amount": 100, "priceIap": { "fa": "۹۹٬۰۰۰ تومان", "en": "$0.99" }, "name": { "fa": "بسته ۱۰۰ جم", "en": "100 Gems" }, "desc": { "fa": "۱۰۰ جم", "en": "100 gems" } },
+    { "id": "pack_gems_m", "type": "pack", "rarity": "rare", "price": 5, "currency": "iap", "asset": "gems", "amount": 550, "priceIap": { "fa": "۳۹۹٬۰۰۰ تومان", "en": "$3.99" }, "name": { "fa": "بسته ۵۵۰ جم", "en": "550 Gems" }, "desc": { "fa": "۵۵۰ جم + ۱۰٪ هدیه", "en": "550 gems +10% bonus" } }
+  ]
+}

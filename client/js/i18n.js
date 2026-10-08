@@ -1,0 +1,153 @@
+// بومی‌سازی — بند ۳۷: همه متن‌ها از این ماژول عبور می‌کنند؛ فارسی پیش‌فرض و راست‌به‌چپ.
+const STRINGS = {
+  fa: {
+    'app.name': 'بازی‌خونه', 'app.tag': 'بازی‌های قدیمی، حالِ نو',
+    'login.enter': 'ورود به بازی', 'login.guest': 'ورود مهمان', 'login.loading': 'در حال آماده‌سازی…',
+    'home.play': 'بازی سریع', 'home.friends': 'دوستان', 'home.rank': 'رتبه‌بندی', 'home.daily': 'چالش روز',
+    'home.level': 'سطح', 'home.playNow': 'همین الان بازی کن!', 'home.seeAll': 'مشاهده همه',
+    'nav.home': 'خانه', 'nav.play': 'بازی', 'nav.shop': 'فروشگاه', 'nav.profile': 'پروفایل',
+    'play.quick': 'بازی سریع', 'play.quickDesc': '۸ بازیکن · ۳ راند · حدود ۳ دقیقه',
+    'play.room': 'اتاق خصوصی', 'play.roomDesc': 'با کد، دوستاتو دعوت کن', 'play.daily': 'چالش روز',
+    'mm.searching': 'دنبال حریف می‌گردیم…', 'mm.cancel': 'انصراف', 'mm.foundSoon': 'اگه کسی پیدا نشه، ربات‌ها میان!',
+    'lobby.found': 'مسابقه تشکیل شد!', 'lobby.starting': 'شروع بازی…', 'lobby.round': 'راند {n} از {t}',
+    'round.start': 'راند {n}', 'round.getready': 'آماده شو!', 'round.result': 'نتیجه راند {n}',
+    'round.cutline': '✂️ خط حذف', 'round.continue': 'ادامه…',
+    'result.title': 'نتیجه نهایی', 'result.rank1': 'قهرمانی! 🎉', 'result.rank2': 'دوم شدی!', 'result.rank3': 'سوم شدی!',
+    'result.rankN': 'رتبه {n} شدی', 'result.xp': 'امتیاز تجربه', 'result.coins': 'سکه', 'result.trophies': 'جام',
+    'result.best': 'بهترین رکورد', 'result.levelup': 'سطح بالا رفت! 🎊', 'result.newBest': 'رکورد جدید!',
+    'result.rematch': 'دوباره بازی کنیم', 'result.invite': 'دعوت دوستان', 'result.home': 'خانه',
+    'result.ad.double': 'دو برابرش کن!', 'result.ad.watch': 'تماشای تبلیغ', 'result.ad.done': '+{n} سکه اضافه شد!',
+    'result.waiting': 'منتظر بقیه برای ریمچ…',
+    'room.title': 'اتاق خصوصی', 'room.create': 'ساخت اتاق', 'room.join': 'پیوستن با کد', 'room.code': 'کد اتاق',
+    'room.copy': 'کپی کد', 'room.copied': 'کد کپی شد!', 'room.ready': 'آماده‌ام', 'room.notReady': 'انصراف',
+    'room.start': 'شروع بازی', 'room.leave': 'خروج از اتاق', 'room.fillBots': 'پر شدن با ربات',
+    'room.host': 'میزبان', 'room.notFound': 'اتاقی با این کد پیدا نشد', 'room.full': 'اتاق پر است',
+    'room.needPlayers': 'حداقل ۲ بازیکن لازم است', 'room.notHost': 'فقط میزبان می‌تواند شروع کند',
+    'room.share': 'این کد رو به دوستات بده:',
+    'shop.title': 'فروشگاه', 'shop.buy': 'خرید', 'shop.owned': 'داریش', 'shop.equip': 'استفاده', 'shop.equipped': 'فعال شد',
+    'shop.notEnough': 'موجودی کافی نیست!', 'shop.bought': 'خرید موفق! 🎁', 'shop.iap': 'پرداخت درون‌برنامه‌ای',
+    'shop.iapMock': 'تأیید پرداخت (محیط تست)', 'shop.iapSuccess': 'پرداخت انجام شد!',
+    'shop.rarity.common': 'معمولی', 'shop.rarity.rare': 'کمیاب', 'shop.rarity.epic': 'افسانه‌ای',
+    'profile.title': 'پروفایل', 'profile.editName': 'تغییر نام', 'profile.save': 'ذخیره', 'profile.saved': 'ذخیره شد',
+    'profile.stats': 'آمار', 'profile.wins': 'برد', 'profile.losses': 'باخت', 'profile.matches': 'مسابقه',
+    'profile.trophies': 'جام', 'profile.achievements': 'افتخارات', 'profile.avatar': 'آواتار',
+    'lb.title': 'رتبه‌بندی', 'lb.global': 'سراسری', 'lb.weekly': 'هفتگی', 'lb.friends': 'دوستان', 'lb.empty': 'هنوز کسی اینجا نیست',
+    'friends.title': 'دوستان', 'friends.recent': 'بازیکنان اخیر', 'friends.follow': 'دنبال', 'friends.following': 'دنبال می‌کنی',
+    'friends.block': 'بلاک', 'friends.report': 'ریپورت', 'friends.reported': 'ریپورت ثبت شد', 'friends.empty': 'هنوز با کسی بازی نکردی',
+    'settings.title': 'تنظیمات', 'settings.lang': 'زبان', 'settings.music': 'موسیقی', 'settings.sfx': 'صدای افکت',
+    'settings.about': 'درباره', 'settings.version': 'نسخه', 'settings.replayTut': 'دیدن دوباره آموزش',
+    'daily.title': 'چالش روز', 'daily.target': 'امتیاز هدف: {n}', 'daily.best': 'بهترین امتیازت: {n}',
+    'daily.attempts': 'تلاش باقی‌مانده: {n}', 'daily.play': 'شروع چالش', 'daily.done': 'چالش امروز رو کامل کردی! 🎉',
+    'daily.reward': 'جایزه: {c} سکه + {x} XP', 'daily.noAttempts': 'تلاش‌های امروز تمام شد',
+    'daily.passed': 'هدف رو گرفتی! 🎯', 'daily.missed': 'نزدیک بود! امتیازت: {n}',
+    'tut.title': 'آموزش سریع', 'tut.skip': 'رد کردن', 'tut.step1': 'هر وقت ✅ دیدی، سریع بزن روش!',
+    'tut.step2': 'هر وقت ✋ دیدی، دست نگه‌دار. نزن!', 'tut.step3': 'حواست باشه؛ قانون وسط بازی عوض می‌شه!',
+    'tut.tapNow': 'حالا بزن!', 'tut.holdNow': 'حالا نزن!', 'tut.great': 'آفرین! آماده‌ای 🎮', 'tut.oops': 'اوپس! دوباره امتحان کن',
+    'game.tap': 'بزن!', 'game.hold': 'نزن!', 'game.rule.tapOnly': 'فقط {c} رو بزن',
+    'game.rule.notColor': '{c} رو نزن، بقیه رو بزن', 'game.rule.shapeOnly': 'فقط شکل {s} رو بزن',
+    'game.rule.direct': 'طبق علامت روی کارت',
+    'game.color.red': 'قرمز', 'game.color.blue': 'آبی', 'game.color.green': 'سبز', 'game.color.yellow': 'زرد',
+    'game.shape.circle': 'دایره', 'game.shape.square': 'مربع', 'game.shape.triangle': 'مثلث', 'game.shape.star': 'ستاره',
+    'game.snake.hint': 'سوایپ کن یا با دکمه‌ها حرکت کن · غذا بخور، زنده بمان',
+    'game.race.hint': 'چپ/راست برای فرمان · بوست برای سرعت · از دروازه‌های سبز میان‌بر بگذر',
+    'game.sudden': '⚠️ مرگ ناگهانی! دیوارها دارن جمع می‌شن',
+    'game.finished': 'خط پایان!', 'game.crash': 'کرش!', 'game.shortcut': 'میان‌بر!', 'game.you': 'شما',
+    'game.spectating': 'تماشاچی شدی — بقیه دارن بازی می‌کنن',
+    'game.name.ReactionGame': 'دست‌به‌کار', 'game.name.SnakeArena': 'مار محله', 'game.name.StreetRace': 'مسابقه کوچه',
+    'conn.lost': 'ارتباط با سرور قطع شد. در حال تلاش برای اتصال مجدد…', 'conn.back': 'اتصال برقرار شد ✅',
+    'conn.try': 'تلاش {n}…',
+    'err.generic': 'یه مشکلی پیش اومد؛ دوباره امتحان کن', 'err.unauthorized': 'نشست منقضی شد؛ دوباره وارد شو',
+    'err.offline': 'به اینترنت وصل نیستی',
+    'common.ok': 'باشه', 'common.cancel': 'انصراف', 'common.confirm': 'تأیید', 'common.close': 'بستن',
+    'common.loading': 'در حال بارگذاری…', 'common.level': 'سطح {n}', 'common.bot': 'ربات',
+    'phrase.again': 'دوباره!', 'phrase.mine': 'این یکی مال منه!', 'phrase.what': 'چه کردی؟!', 'phrase.luck': 'شانسی بود!', 'phrase.gg': 'GG',
+    'ad.interstitial': 'تبلیغ کوتاه — ادامه بازی', 'ad.simulated': 'شبیه‌ساز تبلیغ (نسخه توسعه)',
+  },
+  en: {
+    'app.name': 'BAZIKHUNEH', 'app.tag': 'Old-school games, fresh vibes',
+    'login.enter': 'Enter Game', 'login.guest': 'Guest Login', 'login.loading': 'Preparing…',
+    'home.play': 'Quick Match', 'home.friends': 'Friends', 'home.rank': 'Leaderboard', 'home.daily': 'Daily Challenge',
+    'home.level': 'Level', 'home.playNow': 'Play right now!', 'home.seeAll': 'See all',
+    'nav.home': 'Home', 'nav.play': 'Play', 'nav.shop': 'Shop', 'nav.profile': 'Profile',
+    'play.quick': 'Quick Match', 'play.quickDesc': '8 players · 3 rounds · ~3 min',
+    'play.room': 'Private Room', 'play.roomDesc': 'Invite friends with a code', 'play.daily': 'Daily Challenge',
+    'mm.searching': 'Finding opponents…', 'mm.cancel': 'Cancel', 'mm.foundSoon': 'Bots will join if no one shows up!',
+    'lobby.found': 'Match found!', 'lobby.starting': 'Starting…', 'lobby.round': 'Round {n} of {t}',
+    'round.start': 'Round {n}', 'round.getready': 'Get ready!', 'round.result': 'Round {n} result',
+    'round.cutline': '✂️ Cut line', 'round.continue': 'Continue…',
+    'result.title': 'Final Result', 'result.rank1': 'Champion! 🎉', 'result.rank2': 'Second place!', 'result.rank3': 'Third place!',
+    'result.rankN': 'You placed #{n}', 'result.xp': 'XP', 'result.coins': 'Coins', 'result.trophies': 'Trophies',
+    'result.best': 'Best score', 'result.levelup': 'Level up! 🎊', 'result.newBest': 'New best!',
+    'result.rematch': 'Play again', 'result.invite': 'Invite friends', 'result.home': 'Home',
+    'result.ad.double': 'Double it!', 'result.ad.watch': 'Watch ad', 'result.ad.done': '+{n} coins added!',
+    'result.waiting': 'Waiting for others to rematch…',
+    'room.title': 'Private Room', 'room.create': 'Create Room', 'room.join': 'Join by code', 'room.code': 'Room code',
+    'room.copy': 'Copy code', 'room.copied': 'Code copied!', 'room.ready': "I'm ready", 'room.notReady': 'Unready',
+    'room.start': 'Start game', 'room.leave': 'Leave room', 'room.fillBots': 'Fill with bots',
+    'room.host': 'Host', 'room.notFound': 'No room with this code', 'room.full': 'Room is full',
+    'room.needPlayers': 'Need at least 2 players', 'room.notHost': 'Only the host can start',
+    'room.share': 'Give this code to your friends:',
+    'shop.title': 'Shop', 'shop.buy': 'Buy', 'shop.owned': 'Owned', 'shop.equip': 'Equip', 'shop.equipped': 'Equipped',
+    'shop.notEnough': 'Not enough funds!', 'shop.bought': 'Purchased! 🎁', 'shop.iap': 'In-app purchase',
+    'shop.iapMock': 'Confirm payment (test mode)', 'shop.iapSuccess': 'Payment successful!',
+    'shop.rarity.common': 'Common', 'shop.rarity.rare': 'Rare', 'shop.rarity.epic': 'Epic',
+    'profile.title': 'Profile', 'profile.editName': 'Change name', 'profile.save': 'Save', 'profile.saved': 'Saved',
+    'profile.stats': 'Stats', 'profile.wins': 'Wins', 'profile.losses': 'Losses', 'profile.matches': 'Matches',
+    'profile.trophies': 'Trophies', 'profile.achievements': 'Achievements', 'profile.avatar': 'Avatar',
+    'lb.title': 'Leaderboard', 'lb.global': 'Global', 'lb.weekly': 'Weekly', 'lb.friends': 'Friends', 'lb.empty': 'Nobody here yet',
+    'friends.title': 'Friends', 'friends.recent': 'Recent players', 'friends.follow': 'Follow', 'friends.following': 'Following',
+    'friends.block': 'Block', 'friends.report': 'Report', 'friends.reported': 'Reported', 'friends.empty': "You haven't played with anyone yet",
+    'settings.title': 'Settings', 'settings.lang': 'Language', 'settings.music': 'Music', 'settings.sfx': 'SFX',
+    'settings.about': 'About', 'settings.version': 'Version', 'settings.replayTut': 'Replay tutorial',
+    'daily.title': 'Daily Challenge', 'daily.target': 'Target score: {n}', 'daily.best': 'Your best: {n}',
+    'daily.attempts': 'Attempts left: {n}', 'daily.play': 'Start challenge', 'daily.done': "Today's challenge complete! 🎉",
+    'daily.reward': 'Reward: {c} coins + {x} XP', 'daily.noAttempts': 'No attempts left today',
+    'daily.passed': 'Target reached! 🎯', 'daily.missed': 'So close! Score: {n}',
+    'tut.title': 'Quick tutorial', 'tut.skip': 'Skip', 'tut.step1': 'When you see ✅, tap it fast!',
+    'tut.step2': 'When you see ✋, hold on. Don\'t tap!', 'tut.step3': 'Watch out: the rule changes mid-game!',
+    'tut.tapNow': 'Tap now!', 'tut.holdNow': "Don't tap now!", 'tut.great': 'Nice! You are ready 🎮', 'tut.oops': 'Oops! Try again',
+    'game.tap': 'TAP!', 'game.hold': "DON'T!", 'game.rule.tapOnly': 'Tap only {c}',
+    'game.rule.notColor': "Don't tap {c}, tap the rest", 'game.rule.shapeOnly': 'Tap only the {s} shape',
+    'game.rule.direct': 'Follow the sign on the card',
+    'game.color.red': 'RED', 'game.color.blue': 'BLUE', 'game.color.green': 'GREEN', 'game.color.yellow': 'YELLOW',
+    'game.shape.circle': 'circle', 'game.shape.square': 'square', 'game.shape.triangle': 'triangle', 'game.shape.star': 'star',
+    'game.snake.hint': 'Swipe or use buttons · Eat food, stay alive',
+    'game.race.hint': 'Left/right to steer · Hold boost · Pass green shortcut gates',
+    'game.sudden': '⚠️ Sudden death! Walls closing in',
+    'game.finished': 'Finish line!', 'game.crash': 'Crash!', 'game.shortcut': 'Shortcut!', 'game.you': 'You',
+    'game.spectating': 'Spectating — others still playing',
+    'game.name.ReactionGame': 'Reaction Rush', 'game.name.SnakeArena': 'Snake Arena', 'game.name.StreetRace': 'Street Race',
+    'conn.lost': 'Connection lost. Trying to reconnect…', 'conn.back': 'Connected ✅',
+    'conn.try': 'Attempt {n}…',
+    'err.generic': 'Something went wrong; try again', 'err.unauthorized': 'Session expired; log in again',
+    'err.offline': 'You are offline',
+    'common.ok': 'OK', 'common.cancel': 'Cancel', 'common.confirm': 'Confirm', 'common.close': 'Close',
+    'common.loading': 'Loading…', 'common.level': 'Level {n}', 'common.bot': 'Bot',
+    'phrase.again': 'Again!', 'phrase.mine': 'This one is mine!', 'phrase.what': 'What did you do?!', 'phrase.luck': 'Lucky shot!', 'phrase.gg': 'GG',
+    'ad.interstitial': 'Short ad — game continues', 'ad.simulated': 'Ad simulator (dev build)',
+  },
+};
+
+let lang = localStorage.getItem('bk_lang') || 'fa';
+if (!STRINGS[lang]) lang = 'fa';
+
+export function setLang(l) {
+  if (!STRINGS[l]) return;
+  lang = l;
+  localStorage.setItem('bk_lang', l);
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+}
+
+export function getLang() { return lang; }
+
+export function t(key, params) {
+  let s = (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.fa[key] || key;
+  if (params) for (const [k, v] of Object.entries(params)) s = s.replaceAll(`{${k}}`, String(v));
+  return s;
+}
+
+export function fmt(n) {
+  if (typeof n !== 'number') n = 0;
+  return lang === 'fa' ? Math.round(n).toLocaleString('fa-IR') : Math.round(n).toLocaleString('en-US');
+}

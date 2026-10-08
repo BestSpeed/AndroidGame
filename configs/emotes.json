@@ -1,0 +1,5 @@
+{
+  "emotes": ["😂", "😎", "😱", "😭", "🔥", "👏", "🤔", "😜"],
+  "phrases": ["phrase.again", "phrase.mine", "phrase.what", "phrase.luck", "phrase.gg"],
+  "maxPerMatch": 20
+}

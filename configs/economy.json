@@ -1,0 +1,32 @@
+{
+  "xp": {
+    "levelBase": 100,
+    "levelExp": 1.6,
+    "maxLevel": 100,
+    "sources": {
+      "matchComplete": 40,
+      "win": 60,
+      "topHalf": 25,
+      "dailyChallenge": 50,
+      "tutorial": 30
+    }
+  },
+  "coins": {
+    "starters": 300,
+    "matchByRank": [120, 90, 70, 55, 45, 35, 30, 25],
+    "winBonus": 40,
+    "tutorial": 100,
+    "dailyReward": [50, 75, 100, 125, 150, 200, 300]
+  },
+  "gems": { "starters": 0 },
+  "trophies": {
+    "byRank": [24, 14, 8, 2, -2, -6, -10, -14],
+    "min": 0
+  },
+  "ads": {
+    "doubleCoinsMultiplier": 2,
+    "rewardedCooldownSec": 90,
+    "dailyCap": 8,
+    "interstitialEveryNMatches": 3
+  }
+}

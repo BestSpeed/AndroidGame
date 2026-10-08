@@ -1,0 +1,27 @@
+{
+  "name": "bazikhuneh",
+  "version": "0.1.0",
+  "description": "بازی‌خونه — Multiplayer Party Game (MVP)",
+  "main": "server/src/index.js",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "node server/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BestSpeed/AndroidGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/BestSpeed/AndroidGame/issues"
+  },
+  "homepage": "https://github.com/BestSpeed/AndroidGame#readme",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "vazirmatn": "^33.0.3",
+    "ws": "^8.22.0"
+  }
+}

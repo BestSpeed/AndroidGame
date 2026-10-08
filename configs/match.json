@@ -1,0 +1,16 @@
+{
+  "players": { "min": 2, "max": 8, "target": 8 },
+  "rounds": 3,
+  "countdownSec": 3,
+  "roundIntroSec": 4,
+  "roundResultSec": 5,
+  "finalResultSec": 0,
+  "rematchWindowSec": 20,
+  "disconnectGraceSec": 30,
+  "roundRotation": ["ReactionGame", "SnakeArena", "StreetRace"],
+  "elimination": {
+    "mode": "score-based",
+    "note": "نمایشی: خط حذف پس از هر راند نمایش می‌شود اما کسی بیکار نمی‌ماند (تصمیم طراحی — نکات معماری)",
+    "cutAfterRound": [2, 2]
+  }
+}

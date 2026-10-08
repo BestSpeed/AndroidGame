@@ -1,0 +1,9 @@
+{
+  "name": { "fa": "بازی‌خونه", "en": "BAZIKHUNEH" },
+  "defaultLang": "fa",
+  "supportedLangs": ["fa", "en"],
+  "portrait": true,
+  "tutorial": { "steps": 3, "rewardCoins": 100, "rewardXp": 30 },
+  "reconnect": { "baseDelayMs": 1000, "maxDelayMs": 15000, "factor": 2 },
+  "features": { "voiceChat": false, "clans": false, "trading": false, "rankedSeasons": false, "battlePass": false }
+}

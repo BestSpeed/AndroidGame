@@ -1,0 +1,50 @@
+{
+  "ReactionGame": {
+    "name": "دست‌به‌کار",
+    "durationSec": 45,
+    "firstCardDelayMs": 1500,
+    "cardShowMsStart": 1100,
+    "cardShowMsMin": 700,
+    "cardShowMsDecayPerCard": 8,
+    "gapMsMin": 300,
+    "gapMsMax": 650,
+    "ruleChangeEvery": [4, 7],
+    "tapRatio": 0.55,
+    "score": { "correctTap": 100, "speedBonusMax": 50, "correctHold": 60, "wrongTap": -80, "missedTap": -40, "lockoutMs": 500, "comboAfter": 5, "comboBonusPerStep": 10, "comboBonusMax": 50 },
+    "minHumanReactionMs": 150,
+    "colors": ["red", "blue", "green", "yellow"],
+    "shapes": ["circle", "square", "triangle", "star"]
+  },
+  "SnakeArena": {
+    "name": "مار محله",
+    "gridW": 24,
+    "gridH": 32,
+    "tickMs": 125,
+    "speedCellsPerSec": 6,
+    "foodCount": 6,
+    "foodScore": 10,
+    "survivalScorePerSec": 2,
+    "maxDurationSec": 90,
+    "suddenDeathAtSec": 75,
+    "suddenDeathShrinkEverySec": 2,
+    "maxInputsPerSec": 10
+  },
+  "StreetRace": {
+    "name": "مسابقه کوچه",
+    "tickMs": 83,
+    "maxDurationSec": 60,
+    "baseSpeed": 220,
+    "steerSpeed": 2.2,
+    "boostMultiplier": 1.55,
+    "boostDrainPerSec": 42,
+    "boostRegenPerSec": 16,
+    "crashSlowdownMs": 1100,
+    "crashSpeedFactor": 0.35,
+    "shortcutBonus": 160,
+    "tracks": [
+      { "id": "kooche_sefid", "name": "کوچه صیفی", "length": 3400, "obstacleDensity": 0.8, "shortcutEvery": 700, "seed": 11 },
+      { "id": "khiyaban_paqaleh", "name": "خیابون پاقلعه", "length": 3800, "obstacleDensity": 1.0, "shortcutEvery": 620, "seed": 22 },
+      { "id": "bolvar_bagh", "name": "بلوار باغ", "length": 4200, "obstacleDensity": 1.15, "shortcutEvery": 560, "seed": 33 }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "namePrefix": "🤖",
+  "names": ["رضا", "سارا", "نیما", "لیلا", "آرش", "مینا", "پویا", "شیرین", "کاوه", "نرگس", "بابک", "یاسمن"],
+  "avatars": ["🤖", "👾", "🦾", "🎯"],
+  "difficulties": {
+    "easy":   { "reactionMs": [620, 950], "errorRate": 0.24, "snakeMistakeRate": 0.18, "raceAccuracy": 0.55, "boostIQ": 0.3 },
+    "normal": { "reactionMs": [420, 700], "errorRate": 0.13, "snakeMistakeRate": 0.08, "raceAccuracy": 0.75, "boostIQ": 0.6 },
+    "hard":   { "reactionMs": [260, 450], "errorRate": 0.05, "snakeMistakeRate": 0.02, "raceAccuracy": 0.9,  "boostIQ": 0.9 }
+  },
+  "fillMix": ["easy", "normal", "normal", "hard"]
+}

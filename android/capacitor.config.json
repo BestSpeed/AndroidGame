@@ -1,0 +1,15 @@
+{
+  "appId": "com.bazikhuneh.app",
+  "appName": "بازی‌خونه",
+  "webDir": "../client",
+  "server": {
+    "url": "https://YOUR_GAME_SERVER",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "backgroundColor": "#1b1035",
+  "_note": "در بیلد آفلاین/لوکال، فیلد server را حذف کنید تا دارایی‌های وب داخل بسته قرار بگیرند. جهت صفحه: Portrait در مانیفست تنظیم شود."
+}

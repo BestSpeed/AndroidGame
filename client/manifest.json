@@ -1,0 +1,10 @@
+{
+  "name": "بازی‌خونه",
+  "short_name": "بازی‌خونه",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1b1035",
+  "theme_color": "#1b1035",
+  "icons": [{ "src": "/assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

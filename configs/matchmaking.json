@@ -1,0 +1,9 @@
+{
+  "targetSize": 8,
+  "minStartSize": 2,
+  "skillBaseRange": 150,
+  "skillExpandPerSec": 40,
+  "botFillAfterSec": 5,
+  "maxQueueSec": 12,
+  "queueTickMs": 1000
+}

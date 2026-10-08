@@ -1,0 +1,8 @@
+{
+  "list": [
+    { "id": "first_win", "name": { "fa": "اولین برد", "en": "First Win" }, "icon": "🏆", "goal": 1, "stat": "wins", "xp": 50, "coins": 100 },
+    { "id": "matches_10", "name": { "fa": "ده مسابقه", "en": "10 Matches" }, "icon": "🎮", "goal": 10, "stat": "matches", "xp": 80, "coins": 150 },
+    { "id": "wins_5", "name": { "fa": "پنج برد", "en": "5 Wins" }, "icon": "⭐", "goal": 5, "stat": "wins", "xp": 120, "coins": 250 },
+    { "id": "snake_survivor", "name": { "fa": "مارِ جون‌سخت", "en": "Tough Snake" }, "icon": "🐍", "goal": 1, "stat": "snakeWins", "xp": 60, "coins": 120 }
+  ]
+}
